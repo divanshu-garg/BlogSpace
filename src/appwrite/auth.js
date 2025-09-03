@@ -49,7 +49,7 @@ export class AuthService {
       console.log("error occured while getting current user:", error);
       return null; // not throwing error, so return to stop execution
     }
-  }
+  } 
 
   async logout() {
     try {
