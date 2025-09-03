@@ -13,14 +13,15 @@ export class AuthService {
 
   async createAccount({ name, email, password }) {
     try {
-      const userAccount = await this.account.create(
-        ID.unique(),
-        email,
-        password,
-        name
-      );
+      const userAccount = await this.account.create({
+        userId: ID.unique(),
+        email: email,
+        password: password,
+        name: name,
+      });
       if (userAccount) {
         // login function runs here
+        return this.login({ email, password });
       } else {
         return userAccount;
       }
@@ -31,10 +32,10 @@ export class AuthService {
 
   async login({ email, password }) {
     try {
-      const loggedInUser = await this.account.createEmailPasswordSession(
+      const loggedInUser = await this.account.createEmailPasswordSession({
         email,
-        password
-      );
+        password,
+      });
       return loggedInUser;
     } catch (error) {
       throw error;
@@ -55,7 +56,7 @@ export class AuthService {
       return await this.account.deleteSessions();
     } catch (error) {
       console.log("error occured while logging out current user:", error);
-      return null; // not throwing error, so return to stop execution        }
+      return null; // not throwing error, so return to stop execution
     }
   }
 }

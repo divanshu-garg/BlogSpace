@@ -90,6 +90,39 @@ export class Service {
       return false;
     }
   }
+
+  //creating file upload service below
+  
+  async uploadFile(file){
+    try {
+        return await this.bucket.createFile({
+            bucketId: conf.appwriteBucketId,
+            fileId: ID.unique(),
+            file: file,
+        })
+    } catch (error) {
+        console.log("error occured while uploading file: ", error);
+            return false;
+    }
+  }
+
+  async deleteFile(fileId){
+    try {
+        return await this.bucket.deleteFile({
+            bucketId: conf.appwriteBucketId,
+            fileId: fileId,
+        })
+    } catch (error) {
+        console.log("an error occured while deleting file: ", error);
+    }
+  }
+
+  getFilePreview(fileId){
+    return this.bucket.getFilePreview({
+        bucketId: conf.appwriteBucketId,
+        fileId: fileId,
+    })
+  }
 }
 
 const service = new Service();
