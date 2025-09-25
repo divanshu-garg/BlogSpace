@@ -6,6 +6,8 @@ import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
 import { login, logout } from "./store/authSlice";
 
+// react router routes setup here, wrap in route provider, outlet
+
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -19,6 +21,8 @@ function App() {
         } else {
           dispatch(logout());
         }
+        console.log("dispatched");
+        
       })
       .finally(() => {
         setLoading(false);
@@ -37,11 +41,11 @@ function App() {
     </div>
   );
 
-  return (
-    <>
-      <h1>blog project in react and appwrite with redux as well</h1>
-    </>
-  );
+  // return (
+  //   <>
+  //     <h1>blog project in react and appwrite with redux as well</h1>
+  //   </>
+  // );
 }
 
 export default App;
