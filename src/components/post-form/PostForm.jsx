@@ -5,7 +5,7 @@ import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function PostForm(post) {
+function PostForm({post = null}) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -18,14 +18,14 @@ function PostForm(post) {
   // default values are needed in useForm when user is editng a post, not creating a new post
 
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.user.userData);
+  const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
     if (post) {
       const file = data.image[0]
-        ? appwriteService.uploadFile(data.image[0])
+        ? await appwriteService.uploadFile(data.image[0])
         : null;
-      if (file) appwriteService.deleteFile(post.featuredImage);
+      if (file) await appwriteService.deleteFile(post.featuredImage);
 
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
@@ -62,8 +62,8 @@ function PostForm(post) {
       if(name === 'title'){
         setValue('slug', slugTransform(value.title, {shouldValidate: true }))
       }
-      return ()=> subscription.unsubscribe()
     })
+    return ()=> subscription.unsubscribe()
   },[watch, slugTransform, setValue])
 
   return   <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
@@ -95,11 +95,11 @@ function PostForm(post) {
                 />
                 {post && (
                     <div className="w-full mb-4">
-                        <img
+                        { post.featuredImage && <img
                             src={appwriteService.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
-                        />
+                        />}
                     </div>
                 )}
                 <Select
@@ -112,7 +112,7 @@ function PostForm(post) {
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>
-        </form>;
+        </form>
 }
 
 export default PostForm;

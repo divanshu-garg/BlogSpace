@@ -1,7 +1,7 @@
 import React from "react";
 
 function Button({
-  buttonText,
+  children,
   type = "button",
   bgColor = "bg-blue-600",
   textColor = "text-white",
@@ -14,7 +14,7 @@ function Button({
       type={type}
       {...props}
     >
-      {buttonText}
+      {children}
     </button>
   );
 }
