@@ -6,7 +6,7 @@ import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom";
 import { login, logout } from "./store/authSlice";
 
-// react router routes setup here, wrap in route provider, outlet
+// this App.js is used for the page for '/' path in project, all routes setup in main.jsx
 
 function App() {
   const [loading, setLoading] = useState(true);
