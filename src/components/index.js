@@ -11,5 +11,6 @@ import Select from "./Select";
 import PostCard from "./PostCard";
 import Signup from "./Signup";
 import RTE from "./RTE";
+import PostForm from "./post-form/PostForm";
 
-export {Header,Footer, Container, Logo, LogoutButton, Protected, Button, Input, Login, Select, PostCard, Signup, RTE}
+export {Header,Footer, Container, Logo, LogoutButton, Protected, Button, Input, Login, Select, PostCard, Signup, RTE, PostForm}
