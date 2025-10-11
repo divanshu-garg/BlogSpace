@@ -172,9 +172,10 @@ src/
 
 ## 🌐 Live Demo
 
-Check out the live application: [BlogSpace Demo](https://your-deployed-app.vercel.app)
+Check out the live application: [BlogSpace Demo](https://blog-space-eosin.vercel.app/)
 
 **Test Credentials:**
+- Name: admin 
 - Email: admin@admin.com
 - Password: admin123
 
