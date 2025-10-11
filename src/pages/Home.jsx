@@ -35,6 +35,7 @@ function Home() {
               <PostCard {...post} />
             </div>
           ))}
+          {!posts && <h1 className='text-2xl font-bold text-center mt-10'>No posts yet. Be the first one to share!</h1>}
         </div>
       </Container>
     </div>

@@ -14,6 +14,13 @@ import AddPost from "./pages/AddPost.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import Post from "./pages/Post.jsx";
 
+// pending tasks:
+// 1) getFilePreview image not loading
+// 2) posts being created successfully but not showing on home and all posts page
+// 3) add a default image i made in assets to be used if user does not upload any image
+// 4) add .env sample file
+
+
 const router = createBrowserRouter([
   {
     path: "/",

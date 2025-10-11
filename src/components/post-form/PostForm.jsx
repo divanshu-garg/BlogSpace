@@ -25,18 +25,20 @@ function PostForm({post = null}) {
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
         : null;
-      if (file) await appwriteService.deleteFile(post.featuredImage);
+      if (file) await appwriteService.deleteFile(post.featuredImage)
+        else console.log("file upload failed");
+        
 
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
-        featuredImage: file ? file.$id : undefined,
+        featuredImage: file ? file.$id : null,
       });
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
       const file = data.image[0]
-        ? appwriteService.uploadFile(data.image[0])
+        ? await appwriteService.uploadFile(data.image[0])
         : null;
       if (file) {
         const fileId = file.$id;
@@ -46,6 +48,9 @@ function PostForm({post = null}) {
           userId: userData.$id,
         });
         if (dbPost) navigate(`/post/${dbPost.$id}`);
+      }else{
+        console.log("file upload failed");
+        
       }
     }
   };
@@ -53,8 +58,8 @@ function PostForm({post = null}) {
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string") {
       return value.trim().toLowerCase().replace(/\s+/g, "-");
-      return '';  
     }
+    return "";  
   });
 
   useEffect(()=>{
