@@ -116,12 +116,19 @@ export class Service {
         console.log("an error occured while deleting file: ", error);
     }
   }
-
+// get file preview (and other image transformations) does not work on appwrite free plan
   getFilePreview(fileId){
     return this.bucket.getFilePreview({
         bucketId: conf.appwriteBucketId,
         fileId: fileId,
     });
+  }
+
+  getFileView(fileId){
+    return this.bucket.getFileView({
+      bucketId: conf.appwriteBucketId,
+      fileId: fileId,
+    })
   }
 
 }
