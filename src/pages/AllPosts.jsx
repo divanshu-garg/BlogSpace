@@ -6,7 +6,7 @@ function AllPosts() {
     const [posts, setPosts] = useState([])
     useEffect(()=>{
         appwriteService.getPosts().then((allPosts)=>{
-            if(allPosts) setPosts(allPosts.documents)
+            if(allPosts) setPosts(allPosts.rows)
         }).catch((e)=>console.log("error occured while fetching posts:",e)
         )
     },[])

@@ -121,8 +121,9 @@ export class Service {
     return this.bucket.getFilePreview({
         bucketId: conf.appwriteBucketId,
         fileId: fileId,
-    }).href;
+    });
   }
+
 }
 
 const service = new Service();

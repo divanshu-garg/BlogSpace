@@ -6,18 +6,19 @@ function Home() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     appwriteService.getPosts().then((posts) => {
-      if (posts) setPosts(posts.document);
+      console.log("posts: ", posts);
+      if (posts) setPosts(posts.rows);
     });
   }, []);
 
-  if (posts && posts.length === 0) {
+  if (!posts || posts.length === 0) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
               <h1 className="text-2xl font-bold hover:text-gray-500">
-                Login to read posts
+                No posts yet. Be the first one to share!
               </h1>
             </div>
           </div>
@@ -35,7 +36,6 @@ function Home() {
               <PostCard {...post} />
             </div>
           ))}
-          {!posts && <h1 className='text-2xl font-bold text-center mt-10'>No posts yet. Be the first one to share!</h1>}
         </div>
       </Container>
     </div>
