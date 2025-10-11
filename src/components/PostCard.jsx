@@ -3,8 +3,8 @@ import appwriteService from '../appwrite/config'
 import { Link } from 'react-router-dom'
 
 function PostCard({$id, title, featuredImage}) {
-    const imageUrl = appwriteService.getFilePreview(featuredImage);
-    console.log("preview url: ", imageUrl);
+    // const imageUrl = appwriteService.getFilePreview(featuredImage);
+    // console.log("preview url: ", imageUrl);
     
   return (
     <Link to={`/post/${$id}`}>
